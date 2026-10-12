@@ -13,6 +13,7 @@ import { TransferModal } from './components/Modals/TransferModal';
 import { AccountModal } from './components/Modals/AccountModal';
 import { InvestmentModal } from './components/Modals/InvestmentModal';
 import { AuthModal } from './components/AuthModal';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Wallet, Loader2 } from 'lucide-react';
 
 const MainAppContent: React.FC = () => {
@@ -65,10 +66,12 @@ const MainAppContent: React.FC = () => {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <FinanceProvider>
-        <MainAppContent />
-      </FinanceProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <FinanceProvider>
+          <MainAppContent />
+        </FinanceProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
